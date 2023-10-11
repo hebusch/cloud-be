@@ -17,6 +17,7 @@ RUN rm tsconfig.json
 
 RUN yarn install --production --frozen-lockfile
 
-RUN find src -mindepth 1 -maxdepth 1 ! -name db -exec rm -rf {} +
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-CMD ["yarn", "start"]
+ENTRYPOINT ["/entrypoint.sh"]
